@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sales Dashboard</title>
+  <style>
+    body { font-family: Arial; margin: 0; padding: 0; background: #f4f6f8; }
+    h1 { background: #111827; color: white; padding: 15px; }
+    table { width: 90%; margin: 20px auto; border-collapse: collapse; background: white; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+    th { background: #e5e7eb; }
+  </style>
+</head>
+<body>
+  <h1>📊 Sales Dashboard</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price (R)</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+
+  <script>
+    fetch('api/getSales.php')
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = data.map(row => `
+          <tr>
+            <td>${row.product_name}</td>
+            <td>${row.quantity}</td>
+            <td>${row.price}</td>
+            <td>${row.sale_date}</td>
+          </tr>
+        `).join('');
+      })
+      .catch(err => console.error('❌ Error:', err));
+  </script>
+</body>
+</html>
