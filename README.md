@@ -1,1 +1,1 @@
-# realestate
+This project is a modern real estate platform that makes buying and selling property simple and accessible. It is designed to help users browse available homes, list their own properties, and manage bookings — all in one place.
